@@ -32,9 +32,8 @@ int main(){
 	char *word; //input를 공백을 기준으로 자른 token을 가리키는 포인터 
 	Employee *people=NULL; //Employee 배열을 가리키는 포인터 
 		
-	//입력 한 줄 받고 word가 NULL인 경우(입력한 단어 수가 0인 경우) while문 탈출 
-	while(gets(input), word=strtok(input," "), word!=NULL){
-		
+	//입력 한 줄 받고 공백이거나 EOF인 경우 while문 탈출 
+	while(gets(input)&&(word=strtok(input," "))){
 		//총 명령 수 6개 
 		//명령어들과 순차적으로 비교 
 		// i == 0: set
@@ -95,21 +94,15 @@ void insert(Employee *arr, char *input){
 }
 void delete_one(Employee *arr, char *name){
 	//예상 입력: 명령어 이름 
-	int flag=0; //삭제 성공 flag (0: fail, 1: success) 
-	name=strtok(NULL," "); //name에 사용자가 입력한 두 번째 단어 token 대입 
-	for(int i=0;i<size;i++){
-		//name과 원소의 name이 같은 경우 
-		//위와 같이 memset과 대입으로 초기화한 후 flag를 켠다 
-		if(!strcmp(arr[i].name,name)){
-			memset(arr[i].name,0,10);
-			arr[i].age=arr[i].salary=0;
-			memset(arr[i].department,0,20);
-			flag=1;
-			break;
-		}
+	int i = find(arr,name); //같은 이름의 원소가 있는 경우 인덱스 반환, 없으면 -1 반환한다 
+	//찾으면(i가 -1가 아니면) 위와 같이 memset과 대입으로 초기화한다 
+	if(i!=-1){
+		memset(arr[i].name,0,10);
+		arr[i].age=arr[i].salary=0;
+		memset(arr[i].department,0,20);
 	}
 	//실패할 경우 not found 에러 메시지를 출력한다 
-	if(!flag) printf("%s\n",error_msg[0]);
+	else printf("%s\n",error_msg[0]);
 }
 int find(Employee *arr, char *name){
 	//예상 입력: 명령어 이름 
