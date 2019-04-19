@@ -27,8 +27,8 @@ typedef struct queue {
 } queue;
 
 queue* create_queue(void); //싱글연결리스트 queue 생성 
-int add_from_rear(queue* qptr, int value); //주어진 값을 가진 노드의 next에 새로운 노드 생성 
-int remove_from_front(queue* qptr); //주어진 값을 가진 노드를 리스트에서 제거 
+int add_from_rear(queue* qptr, int value); //새로운 노드 삽입 
+int remove_from_front(queue* qptr); //맨앞 노드를 queue에서 제거 
 void delete_queue(queue* qptr); //싱글연결리스트 queue 메모리 해제
 
 int main(){
