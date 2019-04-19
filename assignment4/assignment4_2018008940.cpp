@@ -42,7 +42,7 @@ int main(){
 			int value; //value 변수 선언 (넣을 값)
 			scanf("%d",&value); //입력 
 			int v = add_from_rear(Q, value); // v: 이전 rear (이전 맨 뒤 노드) 
-			if(v) printf("%d after %d\n",value,v); //이전 노드가 있는 경우 
+			if(v>=0) printf("%d after %d\n",value,v); //이전 노드가 있는 경우 
 			else printf("only %d!\n",value);//이전 노드가 없는 경우 
 		}
 		else if(command == 2){
@@ -69,11 +69,11 @@ int add_from_rear(queue* qptr, int value){
 	new_element->next = NULL; //다음 노드 없음 
 	int tmp_value; //반환값
 	//이전 노드가 있는 경우 이전 노드의 값
-	//없으면 0 
+	//없으면 -1
 	
 	//이전 노드가 없는 경우 
 	if(qptr->count == 0){
-		tmp_value = 0; //0으로 초기화 
+		tmp_value = -1; //-1으로 초기화 
 		//이전과 다음 노드에 new_element 할당 
 		qptr->front = new_element;
 		qptr->rear = new_element;
