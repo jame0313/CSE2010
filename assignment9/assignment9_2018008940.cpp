@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAX_ELEMENTS 100000
+#define MAX_ELEMENTS 100005
 #define HEAP_FULL(n) ((n)==MAX_ELEMENTS - 1)
 #define HEAP_EMPTY(n) (!(n))
 
@@ -92,8 +92,8 @@ void adjust(int root, int n){
 	heap[child/2]=rootStu; //찾은 위치에 root노드 할당 
 }
 void mHeapsort(){
-	int i,j;
-	student tmp;
+	int i;
+	student tmp; //임시 노드 
 	for(i=n/2;i>0;i--) adjust(i,n); //자식이 있는 subtree만 정렬(init) 
 	//맨 앞에 있는 원소를 heap 밖 바로 옆으로 보낸 후 나머지 subtree로 정렬
 	//맨 앞 원소는 따로 바깥에 보관되고 그 자리를 heap의 마지막 원소가 대체하여 다시 정렬해야함  
